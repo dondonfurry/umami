@@ -58,9 +58,9 @@
         <span class="WG-translate-text" data-section="slideshow.ui" data-str="loop">Loop Video</span>
     </div>
     <div class="WG-slide-range WG-carosel-control" id="WG-PRN-SLIDE-RANGE-DIV" style="display: none;">
-        <input type="range" min="3" max="60" value="5" step="1" class="slider WG-auto-config" rel="slideshow.speed"
+        <input type="range" min="1" max="60" value="3" step="1" class="slider WG-auto-config" rel="slideshow.speed"
             id="WG-PRN-SLIDE-RANGE">
-        <label data-interval="5" id="WG-PRN-SLIDE-RANGE-DISP">
+        <label data-interval="3" id="WG-PRN-SLIDE-RANGE-DISP">
             <span class="WG-auto-config-disp" rel="slideshow.speed"></span>s
         </label>
     </div>
@@ -126,11 +126,21 @@
 <div id="WG-PRN-SAVE" class="ui-widget-content" style="display: none;">
     <h4><span class="WG-translate-text" data-section="ui" data-str="downloads">downloads</span></h4>
     <div id="WG-PRN-SAVE-BAR-CONTAINER">
-        <!--div class="progress">
-            <div id="WG-PRN-SAVE-BAR" class="progress-bar progress-bar-striped active"
-                style="min-width: 2%;width: 60%;">
-                60%
-            </div>
-        </div-->
     </div>
 </div>
+
+<script>
+(function() {
+    const checkModal = setInterval(function() {
+        const modal = document.getElementById('WG-PRN-MODAL');
+        if (modal) {
+            clearInterval(checkModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    document.getElementById('WG-PRN-EXIT').click();
+                }
+            });
+        }
+    }, 100);
+})();
+</script>

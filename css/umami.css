@@ -7,6 +7,17 @@
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.90);
     text-align: center;
+    cursor: pointer;
+}
+
+/* 모달 내부 요소들 - 클릭해도 모달이 닫히지 않도록 */
+.WG-carosel-control,
+.WG-vote,
+.WG-icon,
+.sidebar,
+.WG-slide-range {
+    cursor: default;
+    pointer-events: auto;
 }
 
 .WG-carosel-control {
@@ -28,6 +39,37 @@
 				  -1px -1px 0 #152f56;
 }
 
+/* 화살표 버튼 - 크기 축소 */
+.WG-carosel-control.WG-left,
+.WG-carosel-control.WG-right {
+    width: 60px !important;
+    height: 80px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.WG-carosel-control.WG-left:hover,
+.WG-carosel-control.WG-right:hover{
+    background-color: rgba(21, 47, 86, .75);
+}
+
+.WG-carosel-control.WG-right {
+    left: auto;
+    right: 0;
+}
+
+.WG-carosel-control.WG-left>span,
+.WG-carosel-control.WG-right>span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    pointer-events: none;
+}
+
 .WG-tags-bar {
     position: absolute;
     float: left;
@@ -38,7 +80,6 @@
     padding-bottom: 10px;
     max-height: calc(100vh - 130px);
     text-align: left;
-    /* background-color: rgba(21, 47, 86, .75); */
     overflow-y: scroll;
     opacity: .75;
     text-shadow: -1px 1px 2px #152f56,
@@ -46,41 +87,6 @@
 				  1px -1px 0 #152f56,
 				  -1px -1px 0 #152f56;
 }
-
-.WG-carosel-control>span {
-    position: absolute;
-    /* left: 50px; */
-    top: 50%;
-    font-size: 50px;
-}
-
-.WG-carosel-control.WG-right>span {
-    /* position: absolute; */
-    left: 0;
-    right: 0;
-    /* top: 50%;
-    font-size: 50px; */
-}
-
-.WG-carosel-control.WG-right {
-    left: auto;
-    right: 0;
-}
-
-
-.WG-carosel-control.WG-left:hover,
-.WG-carosel-control.WG-right:hover{
-    background-color: rgba(21, 47, 86, .75);
-}
-
-.WG-carosel-control.WG-left>span,
-.WG-carosel-control.WG-right>span {
-    position: absolute;
-    left: 2vw;
-    top: 50%;
-    font-size: 3.5vw;
-}
-
 
 .WG-carosel-control.WG-close {
     top: 10px;
@@ -266,13 +272,14 @@
     max-width: 100vw;
     max-height: 100vh;
     overflow: hidden;
+    pointer-events: none; /* 배경 클릭이 모달까지 전달되도록 */
 }
 
-.WG-carosel-inner video, img {
-					   
+.WG-carosel-inner video, 
+.WG-carosel-inner img {
     max-width: 100%;
     max-height: 100%;
-					 
+    pointer-events: auto; /* 콘텐츠 클릭은 정상 동작 */
 }  
 
 .WG-vote {
@@ -294,10 +301,12 @@
 				  -1px -1px 0 #152f56;
 }
 
+.WG-vote > * {
+    pointer-events: auto;
+}
+
 article.thumbnail {
     border: 2px solid #00000000;
-    /* height: 191px;
-    width: 176px; */
 }
 
 article.thumbnail.WG-selected {
@@ -344,7 +353,6 @@ button.WG-MENUEXPAND {
 }
 
 #WG-PRN-SAVE .progress {
-    /* margin: 0 5px; */
 }
 
 #WG-PRN-SAVE .progress-bar {
@@ -474,11 +482,3 @@ td.WG-column-main textarea {
     font-weight: bold;
     color: red;
 }
-
-/* .WG-popup-header {
-    background-color: #284a81 !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-} */

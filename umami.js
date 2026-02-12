@@ -276,3 +276,4 @@
 	// }
 
 })();
+//# sourceMappingURL=umami.js.map
